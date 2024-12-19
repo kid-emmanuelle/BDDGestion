@@ -1,0 +1,57 @@
+services:
+  # Config Server
+  configsvr:
+    container_name: configsvr
+    image: mongo:latest
+    command: mongod --configsvr --replSet configRS --port 27021 --bind_ip localhost,configsvr
+    ports:
+      - 27021:27021
+    networks:
+      - mongonetwork
+
+  # ReplicaSet Members
+  mongo1:
+    container_name: mongo1
+    image: mongo:latest
+    command: mongod --shardsvr --replSet rs0 --port 27017 --bind_ip localhost,mongo1
+    ports:
+      - 27017:27017
+    networks:
+      - mongonetwork
+
+  mongo2:
+    container_name: mongo2
+    image: mongo:latest
+    command: mongod --shardsvr --replSet rs0 --port 27018 --bind_ip localhost,mongo2
+    ports:
+      - 27018:27018
+    networks:
+      - mongonetwork
+
+  mongo3:
+    container_name: mongo3
+    image: mongo:latest
+    command: mongod --shardsvr --replSet rs0 --port 27019 --bind_ip localhost,mongo3
+    ports:
+      - 27019:27019
+    networks:
+      - mongonetwork
+
+  # Mongo Router (mongos)
+  mongos:
+    container_name: mongos
+    image: mongo:latest
+    command: mongos --configdb configRS/configsvr:27021 --port 27020 --bind_ip localhost,mongos
+    ports:
+      - 27020:27020
+    networks:
+      - mongonetwork
+    depends_on:
+      - configsvr
+      - mongo1
+      - mongo2
+      - mongo3
+
+networks:
+  mongonetwork:
+    driver: bridge
