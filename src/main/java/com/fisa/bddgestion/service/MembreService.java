@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MembreService {
@@ -36,4 +37,24 @@ public class MembreService {
     public List<Membre> getMembresByGroupe(String numeroGroupe) {
         return membreRepository.findByNumeroGroupe(numeroGroupe);
     }
+
+    public  Membre modifierMembre(Membre membre) {
+        return membreRepository.findById(membre.getId())
+                .map(existingUser -> {
+                    existingUser.setNom(membre.getNom());
+                    existingUser.setPrenom(membre.getPrenom());
+                    existingUser.setNumeroRue(membre.getNumeroRue());
+                    existingUser.setRue(membre.getRue());
+                    existingUser.setVille(membre.getVille());
+                    existingUser.setCodePostal(membre.getCodePostal());
+                    existingUser.setEmail(membre.getEmail());
+                    existingUser.setType(membre.getType());
+                    existingUser.setNumeroGroupe(membre.getNumeroGroupe());
+
+                    return membreRepository.save(existingUser);
+                }).orElseThrow();
+    }
+
+
+
 }

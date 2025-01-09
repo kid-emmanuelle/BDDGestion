@@ -9,4 +9,5 @@ import java.util.List;
 public interface MembreRepository extends MongoRepository<Membre, String> {
     List<Membre> findByNumeroGroupe(String numeroGroupe);
     List<Membre> findByType(TypeMembre type);
+    
 }
