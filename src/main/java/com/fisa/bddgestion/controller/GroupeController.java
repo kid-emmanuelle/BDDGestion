@@ -29,8 +29,8 @@ public class GroupeController {
         return ResponseEntity.ok(groupeService.getGroupeByNumero(numero));
     }
 
-    @PutMapping("/{numero}")
-    public ResponseEntity<Groupe> mettreAJourGroupe(@PathVariable String numero, @RequestBody Groupe groupe) {
+    @PutMapping
+    public ResponseEntity<Groupe> mettreAJourGroupe(@RequestBody Groupe groupe) {
         return ResponseEntity.ok(groupeService.mettreAJourGroupe(groupe));
     }
 }
