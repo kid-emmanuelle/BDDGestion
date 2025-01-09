@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GroupeService {
@@ -27,5 +28,15 @@ public class GroupeService {
     public Groupe getGroupeByNumero(String numero) {
         return groupeRepository.findById(numero)
                 .orElseThrow(() -> new EntityNotFoundException("Groupe non trouvé"));
+    }
+
+    public Groupe mettreAJourGroupe(Groupe groupe) {
+        return groupeRepository.findById(groupe.getNumero())
+                .map(existingGroup -> {
+                    existingGroup.setNom(groupe.getNom());
+                    existingGroup.setVille(groupe.getVille());
+                    existingGroup.setCodePostal(groupe.getCodePostal());
+                    return groupeRepository.save(existingGroup);
+                }).orElseThrow();
     }
 }

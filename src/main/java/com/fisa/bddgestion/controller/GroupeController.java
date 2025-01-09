@@ -20,12 +20,17 @@ public class GroupeController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Groupe>> getAllGroupes() {
-        return ResponseEntity.ok(groupeService.getAllGroupes());
+    public String getAllGroupes(@RequestBody Groupe groupe) {
+        return "La crapule chez "+groupe.getNom();//ResponseEntity.ok(groupeService.getAllGroupes());
     }
 
     @GetMapping("/{numero}")
     public ResponseEntity<Groupe> getGroupeByNumero(@PathVariable String numero) {
         return ResponseEntity.ok(groupeService.getGroupeByNumero(numero));
+    }
+
+    @PutMapping("/{numero}")
+    public ResponseEntity<Groupe> mettreAJourGroupe(@PathVariable String numero, @RequestBody Groupe groupe) {
+        return ResponseEntity.ok(groupeService.mettreAJourGroupe(groupe));
     }
 }
