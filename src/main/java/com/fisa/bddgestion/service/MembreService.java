@@ -38,6 +38,10 @@ public class MembreService {
         return membreRepository.findByNumeroGroupe(numeroGroupe);
     }
 
+    public boolean login(String email, String password) {
+        return membreRepository.findByEmailAndPassword(email, password).isPresent();
+    }
+
     public  Membre modifierMembre(Membre membre) {
         return membreRepository.findById(membre.getId())
                 .map(existingUser -> {
