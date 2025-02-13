@@ -19,6 +19,10 @@ public class MembreController {
         return ResponseEntity.ok(membreService.inscrireMembre(membre));
     }
 
+    @PutMapping
+    public ResponseEntity<Membre> modifierMembre(@RequestBody Membre membre) {
+        return ResponseEntity.ok(membreService.modifierMembre(membre));
+    }
     @GetMapping
     public ResponseEntity<List<Membre>> getAllMembres() {
         return ResponseEntity.ok(membreService.getAllMembres());

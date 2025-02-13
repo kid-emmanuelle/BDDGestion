@@ -62,13 +62,13 @@ db.createUser({
 use bddgestion
 sh.enableSharding("bddgestion")
 ```
-###3. Configuration de l'Application
+### 3. Configuration de l'Application
 Le fichier application.properties est déjà configuré avec :
 ```properties
 spring.data.mongodb.uri=mongodb://admin:password123@localhost:27020/bddgestion?authSource=admin
 ```
 
-###Exemple d'Insertion de Données
+### Exemple d'Insertion de Données
 ```bash
 use bddgestion
 
