@@ -33,4 +33,9 @@ public class MembreController {
     public ResponseEntity<List<Membre>> getMembresByGroupe(@PathVariable String numeroGroupe) {
         return ResponseEntity.ok(membreService.getMembresByGroupe(numeroGroupe));
     }
+
+    @PostMapping("/login/{username}/{password}")
+    public boolean login(@PathVariable String username, @PathVariable String password) {
+        return this.membreService.login(username, password);
+    }
 }

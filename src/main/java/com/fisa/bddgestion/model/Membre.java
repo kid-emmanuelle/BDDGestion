@@ -18,5 +18,6 @@ public class Membre {
     private String email;
     private TypeMembre type;  // ACTIF ou CLIENT
     private String numeroGroupe;
+    private String password;
 }
 

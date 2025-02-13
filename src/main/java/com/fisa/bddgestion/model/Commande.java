@@ -16,4 +16,6 @@ public class Commande {
     private Date dateCommande;
     private List<String> numerosSerie;  // Liste des numéros de série des matériels
     private Double prixTotal;
+    private String numeroSerie;
+
 }

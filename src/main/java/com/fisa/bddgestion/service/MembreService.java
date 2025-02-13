@@ -36,4 +36,8 @@ public class MembreService {
     public List<Membre> getMembresByGroupe(String numeroGroupe) {
         return membreRepository.findByNumeroGroupe(numeroGroupe);
     }
+
+    public boolean login(String email, String password) {
+        return membreRepository.findByEmailAndPassword(email, password).isPresent();
+    }
 }
