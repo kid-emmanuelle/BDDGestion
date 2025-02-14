@@ -31,4 +31,20 @@ public class MaterielService {
         return materielRepository.findById(numeroSerie)
                 .orElseThrow(() -> new EntityNotFoundException("Materiel non trouvé"));
     }
+
+    public List<Materiel> getMateriels() {
+        return materielRepository.findAll();
+    }
+
+    public Materiel mettreAJourMateriel(Materiel materiel) {
+        return materielRepository.findById(materiel.getNumeroSerie())
+                .map(existingGroup -> {
+                    existingGroup.setNumeroGroupe(materiel.getNumeroGroupe());
+                    existingGroup.setNumeroSerie(materiel.getNumeroSerie());
+                    existingGroup.setPrix(materiel.getPrix());
+                    existingGroup.setMarque(materiel.getMarque());
+                    existingGroup.setModele(materiel.getModele());
+                    return materielRepository.save(existingGroup);
+                }).orElseThrow();
+    }
 }

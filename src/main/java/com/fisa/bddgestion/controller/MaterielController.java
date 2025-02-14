@@ -28,4 +28,14 @@ public class MaterielController {
     public ResponseEntity<Materiel> getMaterielByNumeroSerie(@PathVariable String numeroSerie) {
         return ResponseEntity.ok(materielService.getMaterielByNumeroSerie(numeroSerie));
     }
+
+    @GetMapping
+    public ResponseEntity<List<Materiel>> getMateriels() {
+        return ResponseEntity.ok(materielService.getMateriels());
+    }
+
+    @PutMapping
+    public ResponseEntity<Materiel> mettreAjourMateriel(@RequestBody Materiel materiel) {
+        return ResponseEntity.ok(materielService.mettreAJourMateriel(materiel));
+    }
 }
