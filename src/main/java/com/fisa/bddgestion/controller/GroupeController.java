@@ -20,8 +20,8 @@ public class GroupeController {
     }
 
     @GetMapping
-    public String getAllGroupes(@RequestBody Groupe groupe) {
-        return "La crapule chez "+groupe.getNom();//ResponseEntity.ok(groupeService.getAllGroupes());
+    public ResponseEntity<List<Groupe>> getAllGroupes(@RequestBody Groupe groupe) {
+        return ResponseEntity.ok(groupeService.getAllGroupes());
     }
 
     @GetMapping("/{numero}")

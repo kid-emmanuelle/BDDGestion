@@ -7,7 +7,8 @@ import java.util.Date;
 import java.util.List;
 
 public interface CommandeRepository extends MongoRepository<Commande, String> {
-    List<Commande> findByIdClient(String idClient);
     List<Commande> findByIdVendeur(String idVendeur);
     List<Commande> findByDateCommandeBetween(Date debut, Date fin);
+
+    List<Commande> findAllByIdClient(String clientid);
 }
