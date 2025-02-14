@@ -21,7 +21,7 @@ public class CommandeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Commande> getCommandeById(@RequestParam String id) {
+    public ResponseEntity<Commande> getCommandeById(@PathVariable String id) {
         return ResponseEntity.ok(this.commandeService.getCommandeById(id));
     }
 
