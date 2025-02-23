@@ -29,6 +29,11 @@ public class GroupeController {
         return ResponseEntity.ok(groupeService.getGroupeByNumero(numero));
     }
 
+    @GetMapping("/ville/{ville}")
+    public ResponseEntity<List<Groupe>> getGroupesByVille(@PathVariable String ville) {
+        return ResponseEntity.ok(groupeService.getGroupesByVille(ville));
+    }
+
     @PutMapping
     public ResponseEntity<Groupe> mettreAJourGroupe(@RequestBody Groupe groupe) {
         return ResponseEntity.ok(groupeService.mettreAJourGroupe(groupe));

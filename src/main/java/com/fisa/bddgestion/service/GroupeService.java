@@ -32,6 +32,10 @@ public class GroupeService {
                 .orElseThrow(() -> new EntityNotFoundException("Groupe non trouvé"));
     }
 
+    public List<Groupe> getGroupesByVille(String ville) {
+        return groupeRepository.findByVille(ville);
+    }
+
     public Groupe mettreAJourGroupe(Groupe groupe) {
         return groupeRepository.findById(groupe.getNumero())
                 .map(existingGroup -> {

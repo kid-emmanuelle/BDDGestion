@@ -8,6 +8,7 @@ import lombok.Data;
 @Document(collection = "groupes")
 public class Groupe {
     @Id
+    private String id;
     private String numero;  // G1, G2, etc.
     private String nom;
     private String ville;
