@@ -1,5 +1,6 @@
 package com.fisa.bddgestion.controller;
 
+import com.fisa.bddgestion.model.Commande;
 import com.fisa.bddgestion.model.Materiel;
 import com.fisa.bddgestion.service.MaterielService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,10 @@ public class MaterielController {
     @PutMapping
     public ResponseEntity<Materiel> mettreAjourMateriel(@RequestBody Materiel materiel) {
         return ResponseEntity.ok(materielService.mettreAJourMateriel(materiel));
+    }
+
+    @GetMapping("/search/{numeroSerie}")
+    public ResponseEntity<List<Materiel>> getMaterielbynumeroSerie(@PathVariable String numeroSerie, @RequestParam(required = false) String marque, @RequestParam(required = false) Double price) {
+        return ResponseEntity.ok(this.materielService.getMaterielsById(numeroSerie, marque, price));
     }
 }

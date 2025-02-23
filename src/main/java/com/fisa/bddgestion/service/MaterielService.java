@@ -1,10 +1,15 @@
 package com.fisa.bddgestion.service;
 
 import com.fisa.bddgestion.exception.EntityNotFoundException;
+import com.fisa.bddgestion.model.Commande;
 import com.fisa.bddgestion.model.Materiel;
 import com.fisa.bddgestion.repository.MaterielRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -46,5 +51,14 @@ public class MaterielService {
                     existingGroup.setModele(materiel.getModele());
                     return materielRepository.save(existingGroup);
                 }).orElseThrow();
+    }
+
+
+    public List<Materiel> getMaterielsById(String numeroSerie, String marque, Double price) {
+        System.out.println(numeroSerie);
+        if (marque == null && price == null) {
+            return materielRepository.findAllByNumeroSerie(numeroSerie);
+        }
+        return materielRepository.findAllByNumeroSerieAndMarqueOrPrix(numeroSerie, marque, price);
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/commandes")
@@ -25,13 +26,23 @@ public class CommandeController {
         return ResponseEntity.ok(this.commandeService.getCommandeById(id));
     }
 
-    @GetMapping("/client/{clientid}")
-    public ResponseEntity<List<Commande>> getCommandeByClientId(@PathVariable String clientid) {
-        return ResponseEntity.ok(this.commandeService.getCommandeByClientId(clientid));
-    }
-
     @PostMapping
     public ResponseEntity<Commande> addCommande(@RequestBody Commande commande) {
-        return ResponseEntity.ok(commandeService.creerGroupe(commande));
+        return ResponseEntity.ok(this.commandeService.creerGroupe(commande));
+    }
+
+    @GetMapping("/search/date")
+    public ResponseEntity<List<Commande>> getCommandeByDate(@RequestParam String start, @RequestParam String end) {
+        return ResponseEntity.ok(this.commandeService.getCommandeByDate(start, end));
+    }
+
+    @GetMapping("/search/client/{clientid}")
+    public ResponseEntity<List<Commande>> getCommandebyClientId(@PathVariable String clientid, @RequestParam(required = false) String idVendeur, @RequestParam(required = false) Double price) {
+        return ResponseEntity.ok(this.commandeService.getCommandeByClientId(clientid, idVendeur, price));
+    }
+
+    @GetMapping("/search/vendeur/{vendeurid}")
+    public ResponseEntity<List<Commande>> getCommandebyVendeurId(@PathVariable String vendeurid, @RequestParam(required = false) String idClient, @RequestParam(required = false) Double price) {
+        return ResponseEntity.ok(this.commandeService.getCommandeByVendeurId(vendeurid, idClient, price));
     }
 }
