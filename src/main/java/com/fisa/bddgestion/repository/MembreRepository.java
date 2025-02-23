@@ -9,6 +9,7 @@ import java.util.Optional;
 
 public interface MembreRepository extends MongoRepository<Membre, String> {
     List<Membre> findByNumeroGroupe(String numeroGroupe);
+
     List<Membre> findByType(TypeMembre type);
 
     Optional<Membre> findByEmailAndPassword(String email, String password);

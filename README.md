@@ -1,6 +1,7 @@
 # BDDGestion - Projet MongoDB avec Spring Boot
 
 ## Prérequis
+
 - Docker Desktop
 - Java 17 ou supérieur
 - Maven (ou utiliser ./mvnw)
@@ -9,17 +10,22 @@
 ## Installation et Configuration
 
 ### 1. Cloner le projet
+
 ```bash
 git clone [URL_DU_PROJET]
 cd [NOM_DU_PROJET]
 ```
 
 ### 2. Configuration MongoDB
+
 Démarrer les conteneurs Docker
+
 ```bash
 docker-compose up -d
 ```
+
 Initialiser le Config Server
+
 ```bash
 docker exec -it configsvr mongosh --port 27021
 
@@ -30,7 +36,9 @@ rs.initiate({
   members: [{ _id: 0, host: "configsvr:27021" }]
 })
 ```
+
 Initialiser le ReplicaSet
+
 ```bash
 docker exec -it mongo1 mongosh --port 27017
 
@@ -44,7 +52,9 @@ rs.initiate({
   ]
 })
 ```
+
 Configurer le Router et l'Authentification
+
 ```bash
 docker exec -it mongos mongosh --port 27020
 
@@ -62,13 +72,17 @@ db.createUser({
 use bddgestion
 sh.enableSharding("bddgestion")
 ```
+
 ### 3. Configuration de l'Application
+
 Le fichier application.properties est déjà configuré avec :
+
 ```properties
 spring.data.mongodb.uri=mongodb://admin:password123@localhost:27020/bddgestion?authSource=admin
 ```
 
 ### Exemple d'Insertion de Données
+
 ```bash
 use bddgestion
 
@@ -85,6 +99,36 @@ db.groupes.insertMany([
     nom: "Groupe Lyon",
     ville: "Lyon",
     codePostal: "69001"
+  },
+  {
+    numero: "G3",
+    nom: "Groupe Paris",
+    ville: "Paris",
+    codePostal: "75001"
+  },
+  {
+    numero: "G4",
+    nom: "Groupe Lyon",
+    ville: "Lyon",
+    codePostal: "69001"
+  },
+  {
+    numero: "G5",
+    nom: "Groupe Marseille",
+    ville: "Marseille",
+    codePostal: "13001"
+  },
+  {
+    numero: "G6",
+    nom: "Groupe Valenciennes",
+    ville: "Valenciennes",
+    codePostal: "59300"
+  },
+  {
+    numero: "G7",
+    nom: "Groupe Lille",
+    ville: "Lille",
+    codePostal: "59000"
   }
 ])
 
@@ -99,7 +143,8 @@ db.membres.insertMany([
     codePostal: "75001",
     email: "jean.dupont@email.com",
     type: "ACTIF",
-    numeroGroupe: "G1"
+    numeroGroupe: "G1",
+    password: "123456789"
   },
   {
     nom: "Martin",
@@ -110,7 +155,8 @@ db.membres.insertMany([
     codePostal: "75008",
     email: "marie.martin@email.com",
     type: "CLIENT",
-    numeroGroupe: "G1"
+    numeroGroupe: "G1",
+    password: "123456789"
   }
 ])
 

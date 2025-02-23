@@ -8,6 +8,7 @@ import lombok.Data;
 @Document(collection = "materiels")
 public class Materiel {
     @Id
+    private String id;
     private String numeroSerie;
     private String marque;
     private String modele;

@@ -38,11 +38,11 @@ public class MembreService {
         return membreRepository.findByNumeroGroupe(numeroGroupe);
     }
 
-    public boolean login(String email, String password) {
-        return membreRepository.findByEmailAndPassword(email, password).isPresent();
+    public Optional<Membre> login(String email, String password) {
+        return membreRepository.findByEmailAndPassword(email, password);
     }
 
-    public  Membre modifierMembre(Membre membre) {
+    public Membre modifierMembre(Membre membre) {
         return membreRepository.findById(membre.getId())
                 .map(existingUser -> {
                     existingUser.setNom(membre.getNom());
@@ -58,7 +58,4 @@ public class MembreService {
                     return membreRepository.save(existingUser);
                 }).orElseThrow();
     }
-
-
-
 }

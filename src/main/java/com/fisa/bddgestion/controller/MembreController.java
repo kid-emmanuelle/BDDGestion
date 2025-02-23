@@ -23,6 +23,7 @@ public class MembreController {
     public ResponseEntity<Membre> modifierMembre(@RequestBody Membre membre) {
         return ResponseEntity.ok(membreService.modifierMembre(membre));
     }
+
     @GetMapping
     public ResponseEntity<List<Membre>> getAllMembres() {
         return ResponseEntity.ok(membreService.getAllMembres());
@@ -38,8 +39,10 @@ public class MembreController {
         return ResponseEntity.ok(membreService.getMembresByGroupe(numeroGroupe));
     }
 
-    @PostMapping("/login/{username}/{password}")
-    public boolean login(@PathVariable String username, @PathVariable String password) {
-        return this.membreService.login(username, password);
+    @PostMapping("/login")
+    public ResponseEntity<Membre> login(@RequestParam String email, @RequestParam String password) {
+        return membreService.login(email, password)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.status(401).build());
     }
 }
