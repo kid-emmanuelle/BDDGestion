@@ -28,7 +28,11 @@ public class GroupeService {
     }
 
     public Groupe getGroupeByNumero(String numero) {
-        return groupeRepository.findById(numero)
+        return groupeRepository.findByNumero(numero);
+    }
+
+    public Groupe getGroupeById(String Id) {
+        return groupeRepository.findById(Id)
                 .orElseThrow(() -> new EntityNotFoundException("Groupe non trouvé"));
     }
 
@@ -44,5 +48,12 @@ public class GroupeService {
                     existingGroup.setCodePostal(groupe.getCodePostal());
                     return groupeRepository.save(existingGroup);
                 }).orElseThrow();
+    }
+
+    public void supprimerGroupe(String id) {
+        if (!groupeRepository.existsById(id)) {
+            throw new EntityNotFoundException("Groupe non trouvé");
+        }
+        groupeRepository.deleteById(id);
     }
 }
