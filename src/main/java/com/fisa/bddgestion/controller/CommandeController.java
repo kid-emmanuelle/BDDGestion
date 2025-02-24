@@ -45,4 +45,14 @@ public class CommandeController {
     public ResponseEntity<List<Commande>> getCommandebyVendeurId(@PathVariable String vendeurid, @RequestParam(required = false) String idClient, @RequestParam(required = false) Double price) {
         return ResponseEntity.ok(this.commandeService.getCommandeByVendeurId(vendeurid, idClient, price));
     }
+
+    @GetMapping("/seach/amount/{vendeurid}")
+    public ResponseEntity<Integer> getAmount(@PathVariable String vendeurid) {
+        return ResponseEntity.ok(this.commandeService.getAmount(vendeurid));
+    }
+
+    @GetMapping("/seach/totalprice/{vendeurid}")
+    public ResponseEntity<Double> getTotalPrice(@PathVariable String vendeurid) {
+        return ResponseEntity.ok(this.commandeService.getTotalPrice(vendeurid));
+    }
 }
