@@ -53,12 +53,18 @@ public class MaterielService {
                 }).orElseThrow();
     }
 
-
     public List<Materiel> getMaterielsById(String numeroSerie, String marque, Double price) {
         System.out.println(numeroSerie);
         if (marque == null && price == null) {
             return materielRepository.findAllByNumeroSerie(numeroSerie);
         }
         return materielRepository.findAllByNumeroSerieAndMarqueOrPrix(numeroSerie, marque, price);
+    }
+
+    public void supprimerMateriel(String id) {
+        if (!materielRepository.existsById(id)) {
+            throw new EntityNotFoundException("Materiel non trouvé");
+        }
+        materielRepository.deleteById(id);
     }
 }

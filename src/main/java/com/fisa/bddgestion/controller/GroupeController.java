@@ -20,11 +20,18 @@ public class GroupeController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Groupe>> getAllGroupes(@RequestBody Groupe groupe) {
+    public ResponseEntity<List<Groupe>> getAllGroupes() {
         return ResponseEntity.ok(groupeService.getAllGroupes());
     }
 
-    @GetMapping("/{numero}")
+    // find by id
+    @GetMapping("/{id}")
+    public ResponseEntity<Groupe> getGroupeById(@PathVariable String id) {
+        return ResponseEntity.ok(groupeService.getGroupeById(id));
+    }
+
+    // find by numero
+    @GetMapping("numero/{numero}")
     public ResponseEntity<Groupe> getGroupeByNumero(@PathVariable String numero) {
         return ResponseEntity.ok(groupeService.getGroupeByNumero(numero));
     }
@@ -37,5 +44,11 @@ public class GroupeController {
     @PutMapping
     public ResponseEntity<Groupe> mettreAJourGroupe(@RequestBody Groupe groupe) {
         return ResponseEntity.ok(groupeService.mettreAJourGroupe(groupe));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> supprimerGroupe(@PathVariable String id) {
+        groupeService.supprimerGroupe(id);
+        return ResponseEntity.noContent().build();
     }
 }

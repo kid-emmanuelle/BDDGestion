@@ -20,6 +20,12 @@ public class MaterielController {
         return ResponseEntity.ok(materielService.ajouterMateriel(materiel));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> supprimerMateriel(@PathVariable String id) {
+        materielService.supprimerMateriel(id);
+        return ResponseEntity.noContent().build();
+    }
+
     @GetMapping("/groupe/{numeroGroupe}")
     public ResponseEntity<List<Materiel>> getMaterielsByGroupe(@PathVariable String numeroGroupe) {
         return ResponseEntity.ok(materielService.getMaterielsByGroupe(numeroGroupe));
