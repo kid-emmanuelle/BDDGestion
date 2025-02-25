@@ -81,102 +81,11 @@ Le fichier application.properties est déjà configuré avec :
 spring.data.mongodb.uri=mongodb://admin:password123@localhost:27020/bddgestion?authSource=admin
 ```
 
-### Exemple d'Insertion de Données
+You can use this url to connect to the database.
 
-```bash
-use bddgestion
+### Insertion de Données
 
-// Insérer des groupes
-db.groupes.insertMany([
-  {
-    numero: "G1",
-    nom: "Groupe Paris",
-    ville: "Paris",
-    codePostal: "75001"
-  },
-  {
-    numero: "G2",
-    nom: "Groupe Lyon",
-    ville: "Lyon",
-    codePostal: "69001"
-  },
-  {
-    numero: "G3",
-    nom: "Groupe Paris",
-    ville: "Paris",
-    codePostal: "75001"
-  },
-  {
-    numero: "G4",
-    nom: "Groupe Lyon",
-    ville: "Lyon",
-    codePostal: "69001"
-  },
-  {
-    numero: "G5",
-    nom: "Groupe Marseille",
-    ville: "Marseille",
-    codePostal: "13001"
-  },
-  {
-    numero: "G6",
-    nom: "Groupe Valenciennes",
-    ville: "Valenciennes",
-    codePostal: "59300"
-  },
-  {
-    numero: "G7",
-    nom: "Groupe Lille",
-    ville: "Lille",
-    codePostal: "59000"
-  }
-])
+- 1st way: Use the provided script `insertData.sh` to insert data into the database.
 
-// Insérer des membres
-db.membres.insertMany([
-  {
-    nom: "Dupont",
-    prenom: "Jean",
-    numeroRue: "12",
-    rue: "Rue de la Paix",
-    ville: "Paris",
-    codePostal: "75001",
-    email: "jean.dupont@email.com",
-    type: "ACTIF",
-    numeroGroupe: "G1",
-    password: "123456789"
-  },
-  {
-    nom: "Martin",
-    prenom: "Marie",
-    numeroRue: "45",
-    rue: "Avenue des Champs",
-    ville: "Paris",
-    codePostal: "75008",
-    email: "marie.martin@email.com",
-    type: "CLIENT",
-    numeroGroupe: "G1",
-    password: "123456789"
-  }
-])
+- 2nd way: Use the provided csv files to insert data into the database.
 
-// Insérer du matériel
-db.materiels.insertMany([
-  {
-    numeroSerie: "ECR001",
-    marque: "Dell",
-    modele: "P2419H",
-    type: "ECRAN",
-    prix: 149.99,
-    numeroGroupe: "G1"
-  },
-  {
-    numeroSerie: "PC001",
-    marque: "HP",
-    modele: "EliteBook",
-    type: "LAPTOP",
-    prix: 599.99,
-    numeroGroupe: "G2"
-  }
-])
-```
