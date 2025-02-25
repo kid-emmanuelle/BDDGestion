@@ -1,0 +1,8 @@
+67ba4693ea102278c9e4b53f,HP,EliteBook,G2,PC001,599.99,LAPTOP,null
+67ba4693ea102278c9e4b53e,Dell,P2419H,G1,ECR001,149.99,ECRAN,null
+67bbca905f28522c809a0bbe,Dell,D4589K,G6,ECR001,179.99,ECRAN,com.fisa.bddgestion.model.Materiel
+67bbd791e5bc8506fd8b4967,Canon,MX,G6,MXT758,899.99,AUTRE,com.fisa.bddgestion.model.Materiel
+67bbd82ce5bc8506fd8b4968,AMD,Ryzen 5,G3,R4000,349.99,AUTRE,com.fisa.bddgestion.model.Materiel
+67bd0f696c840c0079ee973b,Logitech,MX Master 3,G7,ACC12345,99.99,SOURIS,com.fisa.bddgestion.model.Materiel
+67bd0f886c840c0079ee973c,Corsair,K70 RGB,G7,ACC67890,149.99,CLAVIER,com.fisa.bddgestion.model.Materiel
+67bd0fe36c840c0079ee973d,JBL,Quantum 400,G7,ACC202401,89.99,ENCEINTES,com.fisa.bddgestion.model.Materiel

@@ -1,0 +1,7 @@
+67ba4659ea102278c9e4b53b,75008,marie.martin@email.com,Martin,G1,45,123456789,Marie,Avenue des Champs,CLIENT,Paris,null
+67ba4659ea102278c9e4b53a,75001,jean.dupont@email.com,Dupont,G1,12,123456789,Jean,Rue de la Paix,ACTIF,Paris,null
+67ba6ac2c0e9e81e71090d44,59300,harry.potter@gmail.com,Potter,G7,45,123456789,Harry,Rue Nuggeser,CLIENT,Lille,com.fisa.bddgestion.model.Membre
+67ba6fe4c0e9e81e71090d49,59300,emma.waston@gmail.com,Waston,G6,34,123456789,Emma,Chemin Vert,ACTIF,Valenciennes,com.fisa.bddgestion.model.Membre
+67bb8d5fb87c124fdc1304a6,69001,ron.weasly@gmail.com,Weasly,G4,99,123456789,Ron,Avenue de Champs Elysee,CLIENT,Lyon,com.fisa.bddgestion.model.Membre
+67bd0dbc6c840c0079ee973a,59000,sharon.waston@gmail.com,Waston,G7,77,123456789,Sharon,Boulevard de Paris,ACTIF,Lille,com.fisa.bddgestion.model.Membre
+67bd8d63f01e7517985ecfa2,69003,moi@gmail.com,GUILLIER,G4,27,1234,Camille,place de chez moi,ACTIF,Lyon,com.fisa.bddgestion.model.Membre
