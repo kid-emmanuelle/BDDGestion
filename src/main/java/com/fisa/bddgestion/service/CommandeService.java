@@ -6,10 +6,8 @@ import com.fisa.bddgestion.repository.CommandeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -29,10 +27,7 @@ public class CommandeService {
                 .orElseThrow(() -> new EntityNotFoundException("Commande non trouvée"));
     }
 
-    public Commande creerGroupe(Commande commande) {
-        if (commande.getId() == null || commande.getId().isEmpty()) {
-            throw new IllegalArgumentException("Le numéro de groupe est obligatoire");
-        }
+    public Commande creerCommande(Commande commande) {
         return commandeRepository.save(commande);
     }
 
@@ -76,5 +71,12 @@ public class CommandeService {
                 .map(Commande::getPrixTotal)
                 .filter(Objects::nonNull)
                 .reduce(0.0, Double::sum);
+    }
+
+    public void supprimerCommande(String id) {
+        if (!commandeRepository.existsById(id)) {
+            throw new EntityNotFoundException("Commande non trouvée");
+        }
+        commandeRepository.deleteById(id);
     }
 }

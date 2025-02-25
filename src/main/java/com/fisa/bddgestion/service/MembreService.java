@@ -2,6 +2,7 @@ package com.fisa.bddgestion.service;
 
 import com.fisa.bddgestion.exception.EntityNotFoundException;
 import com.fisa.bddgestion.model.Membre;
+import com.fisa.bddgestion.model.TypeMembre;
 import com.fisa.bddgestion.repository.MembreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,10 @@ public class MembreService {
 
     public List<Membre> getAllMembres() {
         return membreRepository.findAll();
+    }
+
+    public List<Membre> getAllActifMembres() {
+        return membreRepository.findByType(TypeMembre.ACTIF);
     }
 
     public Membre getMembreById(String id) {

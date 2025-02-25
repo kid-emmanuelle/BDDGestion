@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/commandes")
@@ -26,9 +25,15 @@ public class CommandeController {
         return ResponseEntity.ok(this.commandeService.getCommandeById(id));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> supprimerCommande(@PathVariable String id) {
+        commandeService.supprimerCommande(id);
+        return ResponseEntity.noContent().build();
+    }
+
     @PostMapping
     public ResponseEntity<Commande> addCommande(@RequestBody Commande commande) {
-        return ResponseEntity.ok(this.commandeService.creerGroupe(commande));
+        return ResponseEntity.ok(this.commandeService.creerCommande(commande));
     }
 
     @GetMapping("/search/date")
@@ -46,12 +51,12 @@ public class CommandeController {
         return ResponseEntity.ok(this.commandeService.getCommandeByVendeurId(vendeurid, idClient, price));
     }
 
-    @GetMapping("/seach/amount/{vendeurid}")
+    @GetMapping("/search/amount/{vendeurid}")
     public ResponseEntity<Integer> getAmount(@PathVariable String vendeurid) {
         return ResponseEntity.ok(this.commandeService.getAmount(vendeurid));
     }
 
-    @GetMapping("/seach/totalprice/{vendeurid}")
+    @GetMapping("/search/totalprice/{vendeurid}")
     public ResponseEntity<Double> getTotalPrice(@PathVariable String vendeurid) {
         return ResponseEntity.ok(this.commandeService.getTotalPrice(vendeurid));
     }

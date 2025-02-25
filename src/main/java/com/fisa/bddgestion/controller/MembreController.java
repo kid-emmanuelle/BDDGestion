@@ -29,6 +29,11 @@ public class MembreController {
         return ResponseEntity.ok(membreService.getAllMembres());
     }
 
+    @GetMapping("/actifs")
+    public ResponseEntity<List<Membre>> getAllActifMembres() {
+        return ResponseEntity.ok(membreService.getAllActifMembres());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Membre> getMembreById(@PathVariable String id) {
         return ResponseEntity.ok(membreService.getMembreById(id));
