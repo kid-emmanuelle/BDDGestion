@@ -24,6 +24,8 @@ Démarrer les conteneurs Docker
 docker-compose up -d
 ```
 
+**Note**: Assurez-vous que le réseau `mongonetwork` est correctement configuré dans votre `docker-compose.yml`.
+
 Initialiser le Config Server
 
 ```bash
@@ -75,17 +77,24 @@ sh.enableSharding("bddgestion")
 
 ### 3. Configuration de l'Application
 
-Le fichier application.properties est déjà configuré avec :
+Le fichier `application.properties` est déjà configuré avec :
 
 ```properties
 spring.data.mongodb.uri=mongodb://admin:password123@localhost:27020/bddgestion?authSource=admin
 ```
 
-You can use this url to connect to the database.
+Vous pouvez utiliser cette URL pour vous connecter à la base de données.
 
 ### Insertion de Données
 
-- 1st way: Use the provided script `insertData.sh` to insert data into the database.
+Vous devez insérer des données dans la base de données pour tester l'application. Vous pouvez le faire de deux manières :
 
-- 2nd way: Use the provided csv files to insert data into the database.
+- 1ère méthode : Utilisez le script fourni `bddgestion_import.js` pour insérer des données dans la base de données.
+
+- 2ème méthode : Utilisez les fichiers CSV fournis pour insérer des données dans la base de données.
+
+### Remarques supplémentaires
+
+- Assurez-vous que votre version de Docker est à jour pour éviter des problèmes de compatibilité.
+- Vérifiez que les ports spécifiés dans `docker-compose.yml` ne sont pas utilisés par d'autres services sur votre machine.
 
